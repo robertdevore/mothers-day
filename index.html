@@ -49,102 +49,101 @@
   }, { threshold: 0.3 });
   document.querySelectorAll('[x-fade]').forEach(el => observer.observe(el));
 ">
-  <!-- Scroll Indicator Dots -->
-  <div x-data="{
-  sections: ['hero', 'message', 'gallery', 'appreciation', 'thanks'],
-  active: 'hero',
-  init() {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.active = entry.target.id;
-        }
-      });
-    }, { threshold: 0.6 });
-    this.sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-  }
-}" class="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 pointer-events-auto">
-  <template x-for="id in sections" :key="id">
-    <a :href="'#' + id"
-       :class="active === id ? 'w-4 h-4 rounded-full bg-pink-500 border-2 border-white shadow-lg transition-all' : 'w-4 h-4 rounded-full bg-white border-2 border-pink-400 hover:bg-pink-400 transition-all duration-300 shadow-lg'">
-    </a>
-  </template>
-</div>
-
-
-  <!-- Hero Section -->
-  <section id="hero" class="h-screen flex items-center justify-center bg-gradient-to-b from-pink-100 to-pink-200" x-fade>
-    <div class="text-center">
-      <h1 class="text-5xl font-bold text-pink-700">Happy Mother's Day, Angela ❤️</h1>
-      <p class="mt-4 text-lg text-pink-600 max-w-xl mx-auto">To the most amazing mom and partner, thank you for being the heart of our family. This day is all yours.</p>
+    <!-- Scroll Indicator Dots -->
+    <div x-data="{
+    sections: ['hero', 'message', 'gallery', 'appreciation', 'thanks'],
+    active: 'hero',
+    init() {
+        const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+            this.active = entry.target.id;
+            }
+        });
+        }, { threshold: 0.6 });
+        this.sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+        });
+    }
+    }" class="fixed z-50 flex gap-3 pointer-events-auto flex-col md:right-6 md:top-1/2 md:-translate-y-1/2 md:flex-col bottom-4 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-auto md:left-auto">
+    <template x-for="id in sections" :key="id">
+        <a :href="'#' + id"
+        :class="active === id ? 'w-4 h-4 rounded-full bg-pink-500 border-2 border-white shadow-lg transition-all' : 'w-4 h-4 rounded-full bg-white border-2 border-pink-400 hover:bg-pink-400 transition-all duration-300 shadow-lg'">
+        </a>
+    </template>
     </div>
-  </section>
 
-  <!-- Message Section -->
-  <section id="message" class="h-screen flex items-center justify-center bg-gradient-to-b from-white to-pink-50" x-fade>
-    <div class="max-w-2xl px-4 text-center">
-      <h2 class="text-4xl font-semibold text-pink-600 mb-4">📜 A Note From Us</h2>
-      <p class="text-lg">We've laughed, we've cried, and we've made beautiful memories. You make life sweeter just by being in it. We hope this little page reminds you of just how loved you are. You're our hero every single day.</p>
-    </div>
-  </section>
-
-  <!-- Gallery Section (Bento Grid) -->
-  <section id="gallery" class="h-screen bg-gradient-to-b from-pink-200 to-pink-100 px-6 py-12 overflow-y-auto" x-fade>
-    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-      <template x-for="img in [
-        'photo-1.jpg',
-        'photo-2.jpg',
-        'photo-3.jpg',
-        'photo-4.jpg',
-        'photo-5.jpg',
-        'photo-6.jpg',
-        'photo-7.jpg',
-        'photo-8.jpg',
-        'photo-9.jpg',
-        'photo-10.jpg',
-        'photo-11.jpg',
-        'photo-12.jpg',
-      ]" :key="img">
-        <div class="aspect-square rounded-xl shadow-lg overflow-hidden cursor-pointer" @click="$store.modal.open(img)">
-          <img :src="img" class="w-full h-full object-cover" alt="Gallery image">
+    <!-- Hero Section -->
+    <section id="hero" class="h-screen flex items-center justify-center bg-gradient-to-b from-pink-100 to-pink-200" x-fade>
+        <div class="text-center">
+            <h1 class="text-5xl font-bold text-pink-700">Happy Mother's Day, Angela ❤️</h1>
+            <p class="mt-4 text-lg text-pink-600 max-w-xl mx-auto">To the most amazing mom and partner, thank you for being the heart of our family. This day is all yours.</p>
         </div>
-      </template>
-    </div>
-  </section>
+    </section>
 
-  <!-- Modal -->
-  <div x-show="$store.modal.show" x-transition class="fixed inset-0 bg-black/70 flex items-center justify-center z-50" @click="$store.modal.close()">
-    <div class="max-w-3xl w-full p-4" @click.stop>
-      <img :src="$store.modal.imageSrc" class="rounded-xl w-full h-auto shadow-2xl" alt="Large view">
-    </div>
-  </div>
+    <!-- Message Section -->
+    <section id="message" class="h-screen flex items-center justify-center bg-gradient-to-b from-white to-pink-50" x-fade>
+        <div class="max-w-2xl px-4 text-center">
+            <h2 class="text-4xl font-semibold text-pink-600 mb-4">📜 A Note From Us</h2>
+            <p class="text-lg">We've laughed, we've cried, and we've made beautiful memories. You make life sweeter just by being in it. We hope this little page reminds you of just how loved you are. You're our hero every single day.</p>
+        </div>
+    </section>
 
-  <!-- Appreciation Section -->
-  <section id="appreciation" class="h-screen bg-gradient-to-b from-pink-50 to-white flex items-center justify-center px-6" x-fade>
-    <div class="max-w-3xl text-center">
-      <h2 class="text-4xl font-bold text-pink-600 mb-6">🌟 Top 5 Reasons We Appreciate You</h2>
-      <ul class="space-y-4 text-lg text-gray-700">
-        <li class="bg-white p-4 rounded-xl shadow-md">1. Your endless love and unwavering support.</li>
-        <li class="bg-white p-4 rounded-xl shadow-md">2. The warmth and joy you bring to our home every day.</li>
-        <li class="bg-white p-4 rounded-xl shadow-md">3. Your strength and patience even on the hardest days.</li>
-        <li class="bg-white p-4 rounded-xl shadow-md">4. The laughter, hugs, and bedtime stories we cherish.</li>
-        <li class="bg-white p-4 rounded-xl shadow-md">5. Because you are truly one of a kind - and we are so lucky you're ours.</li>
-      </ul>
-    </div>
-  </section>
+    <!-- Gallery Section (Bento Grid) -->
+    <section id="gallery" class="h-screen bg-gradient-to-b from-pink-200 to-pink-100 px-6 py-12 overflow-y-auto" x-fade>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <template x-for="img in [
+                'photo-1.jpg',
+                'photo-2.jpg',
+                'photo-3.jpg',
+                'photo-4.jpg',
+                'photo-5.jpg',
+                'photo-6.jpg',
+                'photo-7.jpg',
+                'photo-8.jpg',
+                'photo-9.jpg',
+                'photo-10.jpg',
+                'photo-11.jpg',
+                'photo-12.jpg',
+            ]" :key="img">
+                <div class="aspect-square rounded-xl shadow-lg overflow-hidden cursor-pointer" @click="$store.modal.open(img)">
+                <img :src="img" class="w-full h-full object-cover" alt="Gallery image">
+                </div>
+            </template>
+        </div>
+    </section>
 
-  <!-- Thank You Section -->
-  <section id="thanks" class="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-pink-100 text-center px-4" x-fade>
-    <h2 class="text-4xl font-semibold text-pink-700 mb-4">🙏 Thank You</h2>
-    <p class="text-lg text-pink-600 max-w-xl">
-      For the love you give, the patience you show, and the joy you bring. Thank you 💯 We love you more than words can ever say.
-    </p>
-    <div class="mt-6">
-      <span class="text-2xl">💐💖</span>
+    <!-- Modal -->
+    <div x-show="$store.modal.show" x-transition class="fixed inset-0 bg-black/70 flex items-center justify-center z-50" @click="$store.modal.close()">
+        <div class="max-w-3xl w-full p-4" @click.stop>
+            <img :src="$store.modal.imageSrc" class="rounded-xl w-full h-auto shadow-2xl" alt="Large view">
+        </div>
     </div>
-  </section>
+
+    <!-- Appreciation Section -->
+    <section id="appreciation" class="h-screen bg-gradient-to-b from-pink-50 to-white flex items-center justify-center px-6" x-fade>
+        <div class="max-w-3xl text-center">
+            <h2 class="text-4xl font-bold text-pink-600 mb-6">🌟 Top 5 Reasons We Appreciate You</h2>
+            <ul class="space-y-4 text-lg text-gray-700">
+                <li class="bg-white p-4 rounded-xl shadow-md">1. Your endless love and unwavering support.</li>
+                <li class="bg-white p-4 rounded-xl shadow-md">2. The warmth and joy you bring to our home every day.</li>
+                <li class="bg-white p-4 rounded-xl shadow-md">3. Your strength and patience even on the hardest days.</li>
+                <li class="bg-white p-4 rounded-xl shadow-md">4. The laughter, hugs, and bedtime stories we cherish.</li>
+                <li class="bg-white p-4 rounded-xl shadow-md">5. Because you are truly one of a kind - and we are so lucky you're ours.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Thank You Section -->
+    <section id="thanks" class="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-pink-100 text-center px-4" x-fade>
+        <h2 class="text-4xl font-semibold text-pink-700 mb-4">🙏 Thank You</h2>
+        <p class="text-lg text-pink-600 max-w-xl">
+            For the love you give, the patience you show, and the joy you bring. Thank you 💯 We love you more than words can ever say.
+        </p>
+        <div class="mt-6">
+            <span class="text-2xl">💐💖</span>
+        </div>
+    </section>
 </body>
 </html>
