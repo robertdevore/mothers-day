@@ -66,12 +66,12 @@
         if (el) observer.observe(el);
         });
     }
-    }" class="fixed z-50 flex gap-3 pointer-events-auto flex-col md:right-6 md:top-1/2 md:-translate-y-1/2 md:flex-col bottom-4 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-auto md:left-auto">
-    <template x-for="id in sections" :key="id">
-        <a :href="'#' + id"
-        :class="active === id ? 'w-4 h-4 rounded-full bg-pink-500 border-2 border-white shadow-lg transition-all' : 'w-4 h-4 rounded-full bg-white border-2 border-pink-400 hover:bg-pink-400 transition-all duration-300 shadow-lg'">
-        </a>
-    </template>
+    }" class="fixed z-50 flex gap-3 pointer-events-auto flex-row md:flex-col md:right-6 md:top-1/2 md:-translate-y-1/2 bottom-4 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-auto md:left-auto">
+        <template x-for="id in sections" :key="id">
+            <a :href="'#' + id"
+            :class="active === id ? 'w-4 h-4 rounded-full bg-pink-500 border-2 border-white shadow-lg transition-all' : 'w-4 h-4 rounded-full bg-white border-2 border-pink-400 hover:bg-pink-400 transition-all duration-300 shadow-lg'">
+            </a>
+        </template>
     </div>
 
     <!-- Hero Section -->
